@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         
     }

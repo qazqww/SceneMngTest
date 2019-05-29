@@ -23,17 +23,17 @@ public class FadeInOut : BaseUI
         fadeImage = UtilHelper.Find<Image>(transform, "Image");
     }
 
-    private void OnGUI()
-    {
-        if(GUI.Button(new Rect(0,0,100,100), "FadeIn"))
-        {
-            FadeIn(false, 1.0f);
-        }
-        if (GUI.Button(new Rect(100, 0, 100, 100), "FadeOut"))
-        {
-            FadeOut(true, 1.0f);
-        }
-    }
+    //private void OnGUI()
+    //{
+    //    if(GUI.Button(new Rect(0,0,100,100), "FadeIn"))
+    //    {
+    //        FadeIn(false, 1.0f);
+    //    }
+    //    if (GUI.Button(new Rect(100, 0, 100, 100), "FadeOut"))
+    //    {
+    //        FadeOut(true, 1.0f);
+    //    }
+    //}
 
     // showState : 페이드 처리 이후에 계속 보이도록 남겨둘지 여부
     // action : 페이드가 완료될 시 호출할 함수

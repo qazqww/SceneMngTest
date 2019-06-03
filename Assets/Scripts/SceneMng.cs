@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿// SceneMng.cs : 씬의 추가와 씬의 전환을 다루는 매니저 클래스
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 어떤 씬인지 나타냄
 public enum SceneType
 {
     None,
@@ -10,6 +13,7 @@ public enum SceneType
     Game
 }
 
+// 다른 씬으로 통하는 통로
 public enum Channel
 {
     C1,
@@ -21,7 +25,8 @@ public class SceneMng : TSingleton<SceneMng>
     SceneType curScene = SceneType.Title;
 
     Dictionary<SceneType, Scene> sceneDic = new Dictionary<SceneType, Scene>();
-
+    
+    // scene이 sceneDic에 없으면, 오브젝트를 새로 만들어서 추가한 뒤 T 컴포넌트 리턴
     public T AddScene<T> (SceneType scene, bool state = false) where T : Scene
     {
         if(!sceneDic.ContainsKey(scene))
@@ -35,6 +40,7 @@ public class SceneMng : TSingleton<SceneMng>
         return null;
     }
 
+    // 현재 씬을 종료시키고 scene으로 넘어감
     public void Enable(SceneType scene, bool falseLoading = false, float time = 2.0f)
     {
         if (sceneDic.ContainsKey(curScene))
@@ -47,6 +53,7 @@ public class SceneMng : TSingleton<SceneMng>
         }
     }
 
+    // sceneDic을 순회하며 scene의 스크립트만 활성화
     public void ScriptEnable(SceneType scene)
     {
         foreach(var pair in sceneDic)
@@ -58,6 +65,7 @@ public class SceneMng : TSingleton<SceneMng>
         }
     }
 
+    // 해당 채널의 SceneType을 받아 Enable시킴
     public void Event(Channel c, bool falseLoading = false, float time = 2.0f)
     {
         if(sceneDic.ContainsKey(curScene))
